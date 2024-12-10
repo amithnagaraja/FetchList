@@ -3,7 +3,6 @@ package com.app.fetchlist.viewmodel
 import com.app.fetchlist.model.Item
 import com.app.fetchlist.network.ListRepository
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.mockk
