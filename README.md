@@ -24,3 +24,7 @@ Kotest Integration:
 4. A green play button appears when open the individual test files and can be used to run the tests 
 5. Alternatively use "./gradlew test" from command line to run all test case at once and test report can be found in build/reports/. Look for index.html file under appropriate build flavor.
 6. Other way to run is using Android Studio IDE under Build Variants. Make sure to select the appropriate test variant >> Run All Tests
+
+
+More Questions?
+Please reach me out at amithnagaraja@gmail.com
