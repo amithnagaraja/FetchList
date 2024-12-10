@@ -1,15 +1,8 @@
-package com.app.fetchlist
+package com.app.fetchlist.ui.mainscreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import com.app.fetchlist.network.ListApiService
 import com.app.fetchlist.network.ListRepository
@@ -34,30 +27,27 @@ class MainActivity : ComponentActivity() {
         )[ItemListViewModel::class.java]
 
         //testing if api call is getting the data
-        viewModel.fetchItems()
+        //viewModel.fetchItems()
 
         setContent {
-            FetchListTheme {
-                // A surface container using the 'background' color from the theme
-
-            }
+            MainActivityScreen(viewModel = viewModel)
         }
     }
-}
 
-private fun createApiService(): ListApiService {
-    val okHttpLogging = HttpLoggingInterceptor()
-    okHttpLogging.level = HttpLoggingInterceptor.Level.BODY
+    private fun createApiService(): ListApiService {
+        val okHttpLogging = HttpLoggingInterceptor()
+        okHttpLogging.level = HttpLoggingInterceptor.Level.BODY
 
-    val client = OkHttpClient.Builder()
-        .addInterceptor(okHttpLogging)
-        .build()
+        val client = OkHttpClient.Builder()
+            .addInterceptor(okHttpLogging)
+            .build()
 
-    val retrofit = Retrofit.Builder()
-        .baseUrl(Constants.BASE_URL)
-        .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-    return retrofit.create(ListApiService::class.java)
+        return retrofit.create(ListApiService::class.java)
+    }
 }
