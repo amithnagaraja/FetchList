@@ -9,6 +9,14 @@ The final result should be displayed to the user in an easy-to-read list.
 
 End Points: https://fetch-hiring.s3.amazonaws.com/hiring.json
 
+General Info:
+1. 4. Design pattern: MVVM clean architecture
+2. App uses jetpack compose for UI
+2. Retrofit - networking library
+3. okhttp httpinterceptor for logging
+5. Uses coroutines and flows
+6. kotest unit testing framework
+
 Kotest Integration:
 1. Kotest is a descriptive styled unit testing platform that uses junit5
 2. Install Kotest Plugin in Android Studio
