@@ -20,9 +20,11 @@ class ItemListViewModel(
     val isLoading: StateFlow<Boolean> = _isLoading
 
     fun fetchItems() {
+        //set loading to true, once fetching is complete, update the isLoading to true
         viewModelScope.launch {
             _isLoading.value = true
             try {
+                //take 1 limits emitting or collecting of items to only first time. Without using this, finally block was not being called and loading state was always appearing to be true
                 repository.getListItems().take(1)
                     .collect {fetchItems ->
                         _items.value = fetchItems

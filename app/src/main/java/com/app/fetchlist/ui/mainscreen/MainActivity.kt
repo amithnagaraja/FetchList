@@ -26,15 +26,15 @@ class MainActivity : ComponentActivity() {
             ItemListViewModelFactory(repository)
         )[ItemListViewModel::class.java]
 
-        //testing if api call is getting the data
-        //viewModel.fetchItems()
 
         setContent {
             MainActivityScreen(viewModel = viewModel)
         }
     }
 
+
     private fun createApiService(): ListApiService {
+        //logging inteceptors for debugging
         val okHttpLogging = HttpLoggingInterceptor()
         okHttpLogging.level = HttpLoggingInterceptor.Level.BODY
 
@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
             .addInterceptor(okHttpLogging)
             .build()
 
+        //creating retrofit instance for networking call
         val retrofit = Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .client(client)

@@ -59,9 +59,12 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    //Networking Dependencies
     implementation (libs.retrofit)
     implementation (libs.retrofit.converter.gson)
     implementation(libs.okhttp.logging.interceptor)
+
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
     implementation (libs.androidx.lifecycle.viewmodel.compose)
@@ -74,4 +77,15 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Unit Testing Dependencies
+    testImplementation (libs.kotest.runner.junit5)
+    testImplementation (libs.kotest.assertions.core)
+    testImplementation (libs.kotest)
+    testImplementation(libs.mockk)
+}
+
+tasks.withType<Test>().configureEach {
+    // JUnit 5 for kotest - a unit testing framework
+    useJUnitPlatform()
 }

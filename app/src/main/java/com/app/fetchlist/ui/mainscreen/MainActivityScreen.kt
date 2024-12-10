@@ -23,7 +23,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import com.app.fetchlist.model.Item
 
-
+//This UI screen will go inside SetContent of MainActivity.
 @Composable
 fun MainActivityScreen(
     viewModel: ItemListViewModel
@@ -31,15 +31,18 @@ fun MainActivityScreen(
     val items = viewModel.items.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
 
+    //calling api
     LaunchedEffect(Unit) {
         viewModel.fetchItems()
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
         when {
+            //loading state -> display progressbar to user
             isLoading -> {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
+            //when list is not empty, use lazycolumn to display items in a list
             items.isNotEmpty() -> {
                 LazyColumn (Modifier.fillMaxSize()) {
                     items(items) {item ->
@@ -47,6 +50,7 @@ fun MainActivityScreen(
                     }
                 }
             }
+            //when items are empty, display items are empty to the user
             else -> {
                 Text(
                     text = "Items Empty",
